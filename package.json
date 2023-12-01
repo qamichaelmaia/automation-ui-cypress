@@ -4,7 +4,8 @@
   "description": "Exemplo de utilização do método intercept",
   "main": "index.js",
   "scripts": {
-    "test": "npx cypress run"
+    "test": "npx cypress run",
+    "testEnvCyOpen": "set CYPRESS_HOST=http://localhost && npx cypress open"
   },
   "author": "ernestosbarbosa",
   "license": "ISC",
