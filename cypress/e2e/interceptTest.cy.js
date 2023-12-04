@@ -2,6 +2,8 @@
 import { homePage, productSearchPage } from "../support/pages";
 const data = require("../fixtures/data.json");
 
+// docker-compose up -d | docker-compose down
+
 describe("Product Search", () => {
     before(() => {
         cy.intercept(
@@ -24,7 +26,8 @@ describe("Product Search", () => {
     });
 
     beforeEach(() => {
-        cy.visit("/");
+        const host = Cypress.env("HOST");
+        cy.visit(host);
     });
 
     it("autocomplete product item should be return correctly", () => {
@@ -32,10 +35,6 @@ describe("Product Search", () => {
         productSearchPage.search("jacket");
         productSearchPage.productList
             .first()
-            .should(
-                "have.attr",
-                "title",
-                "Typhon Performance Fleece-lined Jacket"
-            );
+            .should("have.attr", "title", "Ingrid Running Jacket");
     });
 });

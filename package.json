@@ -5,11 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "npx cypress run",
-    "testEnvCyOpen": "set CYPRESS_HOST=http://localhost && npx cypress open"
+    "testEnvCyOpen": "CYPRESS_HOST=http://localhost npx cypress open",
+    "testEnvCmdCyOpen": "npx cypress open --env HOST=http://localhost"
   },
   "author": "ernestosbarbosa",
   "license": "ISC",
   "dependencies": {
-    "cypress": "^13.6.0"
+    "cypress": "^13.6.0",
+    "cypress-dotenv": "^2.0.0",
+    "dotenv": "^16.3.1"
   }
 }

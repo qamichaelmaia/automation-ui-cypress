@@ -9,7 +9,7 @@ module.exports = defineConfig({
         },
 
         env: {
-            _baseUrl: "http://lojaebac.ebaconline.art.br",
+            HOST: "http://localhost",
         },
     },
 });
