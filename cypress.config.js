@@ -10,6 +10,7 @@ module.exports = defineConfig({
 
         env: {
             HOST: "http://localhost",
+            PRODUCT: "http://localhost/produtos/",
         },
     },
 });
