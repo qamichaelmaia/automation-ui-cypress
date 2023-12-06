@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-import { productsPage, productDetailsPage } from "../support/pages";
+import { productsPage, productDetailsPage } from "../support/pages"; ///index.js
 
 describe("Product List", () => {
     beforeEach(() => {

@@ -17,9 +17,9 @@ describe("Product Search", () => {
             (req) => {
                 req.reply({
                     statusCode: 200,
-                    body: `${req.query.callback}(
-            ${JSON.stringify(data.autocompleteSearchData)} 
-          )`,
+                    body: `${req.query.callback}(${JSON.stringify(
+                        data.autocompleteSearchData
+                    )})`,
                 });
             }
         );
