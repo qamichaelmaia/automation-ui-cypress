@@ -4,24 +4,20 @@
   "description": "Exemplo de utilização do método intercept",
   "main": "index.js",
   "scripts": {
-    "test": "set CYPRESS_reporter=mochawesome && npx cypress run --reporter %CYPRESS_reporter% --reporter-options reportDir=$PWD/cypress/results,overwrite=false,html=false,json=true && npx mochawesome-merge cypress/results/*.json -- mochawesome.json && npx marge mochawesome.json",
-    "test:allure": "npx cypress run --env allure=true",
-    "allure:generate": "npx allure generate --clean",
-    "allure:report": "npx allure open",
-    "sorry:cypress": "set CYPRESS_API_URL=http://localhost:1234/ && npx cy2 run --record --key EBAC --parallel --ci-build-id `date+%s`",
+    "test": "npx cypress run --reporter mochawesome --reporter-options reportDir=mochawesome-report,overwrite=false,html=false,json=true && npx mochawesome-merge mochawesome-report/*.json > mochawesome-report/mochawesome.json && npx marge mochawesome-report/mochawesome.json",
     "testEnvCyOpen": "CYPRESS_HOST=http://localhost npx cypress open",
-    "testEnvCmdCyOpen": "npx cypress open --env HOST=http://localhost"
+    "testEnvCmdCyOpen": "npx cypress open --env HOST=http://localhost",
+    "cy:run-ci": "start-server-and-test start http://localhost:3000/api-doc test"
   },
   "author": "ernestosbarbosa",
   "license": "ISC",
   "dependencies": {
-    "@shelex/cypress-allure-plugin": "^2.40.1",
-    "allure-commandline": "^2.25.0",
     "cy2": "^4.0.9",
     "cypress-cloud": "^1.9.6",
     "cypress-dotenv": "^2.0.0",
     "dotenv": "^16.3.1",
-    "mochawesome-merge": "^4.3.0"
+    "mochawesome-merge": "^4.3.0",
+    "start-server-and-test": "^2.0.8"
   },
   "devDependencies": {
     "cypress": "^13.15.0",
