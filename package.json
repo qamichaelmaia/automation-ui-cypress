@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npx cypress run --reporter mochawesome --reporter-options reportDir=mochawesome-report,overwrite=false,html=false,json=true && npx mochawesome-merge mochawesome-report/*.json > mochawesome-report/mochawesome.json && npx marge mochawesome-report/mochawesome.json",
+    "start": "npx serverest",
     "testEnvCyOpen": "CYPRESS_HOST=http://localhost npx cypress open",
     "testEnvCmdCyOpen": "npx cypress open --env HOST=http://localhost",
     "cy:run-ci": "start-server-and-test start http://localhost:3000/api-doc test"

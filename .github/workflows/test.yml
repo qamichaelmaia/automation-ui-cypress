@@ -42,6 +42,7 @@ jobs:
         with:
           install-command: npm install
           browser: chrome
+          start: npm start
 
       # Publicar o relatório dos testes
       - name: Publish Report
