@@ -1,0 +1,51 @@
+name: EBAC CI
+
+# Define em quais eventos essa ação será executada (push ou manualmente)
+on:
+  push:
+    branches: 
+      - ci  # Branch 'ci' específica
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Primeiro, fazemos o checkout do repositório
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Cache para o node_modules (melhora a performance da pipeline)
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      # Instalação da versão do Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'  # Colocar a versão entre aspas é uma boa prática
+
+      # Instalação das dependências
+      - name: Install dependencies
+        run: npm install
+
+      # Rodar os testes do Cypress
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        continue-on-error: true  # Permitir falhas sem interromper a pipeline
+        with:
+          install-command: npm install
+          browser: chrome
+
+      # Publicar o relatório dos testes
+      - name: Publish Report
+        uses: peaceiris/actions-gh-pages@v3
+        with: 
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./mochawesome-report  # Certifique-se de que esse diretório existe
